@@ -20,12 +20,15 @@ param(
 #===================================================================================
 # Variables
 #===================================================================================
-$spAddSites = @(
+$spUpdateSites = @(
     @{
-        site = "https://kieferconsultinginc.sharepoint.com/sites/nicktest/sitetemplatetest/testfrommodern/"
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/"
     }
     @{
-        site = "https://kieferconsultinginc.sharepoint.com/sites/nicktest/sitetemplatetest/testfrommodern2/"
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/SampleA"
+    }
+    @{
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/SampleB"
     }
 )
 $spAddLists = @(
@@ -82,6 +85,11 @@ $spListSettingsUpdate = @(
         MajorVersions = 10
     }
 )
+$spNewHomePage = @(
+    @{ 
+        pageName     = "New-Home-Page"
+    }
+)
 
 #===================================================================================
 # Verify Credentials
@@ -95,7 +103,7 @@ if ($Credentials -eq $null) {
 # Add Lists
 #===================================================================================
 
-foreach ($spSite in $spAddSites) {
+foreach ($spSite in $spUpdateSites) {
     Connect-PnPOnline $spSite.site -Credentials $Credentials
 
     Write-Host ""
@@ -126,48 +134,66 @@ foreach ($spSite in $spAddSites) {
     # Add List View
     #===================================================================================
 
-    foreach ($spViewsAdd in $spAddViews) {
+    # foreach ($spViewsAdd in $spAddViews) {
 
-        $listTitle = $spViewsAdd.ListTitle
-        $viewTitle = $spViewsAdd.ViewTitle
-        $viewFields = $spViewsAdd.ViewFields -split (',')
-        $viewQuery = $spViewsAdd.ViewQuery
-        $viewDefaultView = $spViewsAdd.DefaultView
+    #     $listTitle = $spViewsAdd.ListTitle
+    #     $viewTitle = $spViewsAdd.ViewTitle
+    #     $viewFields = $spViewsAdd.ViewFields -split (',')
+    #     $viewQuery = $spViewsAdd.ViewQuery
+    #     $viewDefaultView = $spViewsAdd.DefaultView
 
-        Remove-PnPView -List "$listTitle" -Identity "$viewTitle" -Force
+    #     Remove-PnPView -List "$listTitle" -Identity "$viewTitle" -Force
 
-        If ( $viewDefaultView -eq 'yes') {
+    #     If ( $viewDefaultView -eq 'yes') {
 
-            Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery" -SetAsDefault
+    #         Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery" -SetAsDefault
 
-        }
-        else {
+    #     }
+    #     else {
                                 
-            Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery"
+    #         Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery"
 
-        }
+    #     }
                             
-        Write-Host -ForegroundColor White "LIST: " -nonewline; 
-        Write-Host -ForegroundColor Green $listTitle -nonewline; 
-        Write-Host -ForegroundColor White " - VIEW ADDED: " -nonewline; 
-        Write-Host -ForegroundColor Green $viewTitle
+    #     Write-Host -ForegroundColor White "LIST: " -nonewline; 
+    #     Write-Host -ForegroundColor Green $listTitle -nonewline; 
+    #     Write-Host -ForegroundColor White " - VIEW ADDED: " -nonewline; 
+    #     Write-Host -ForegroundColor Green $viewTitle
 
-    }
+    # }
 
     #===================================================================================
     # Update Lists Settings
     #===================================================================================
 
-    foreach ($spListSettings in $spListSettingsUpdate) {
+    # foreach ($spListSettings in $spListSettingsUpdate) {
 
-        $listTitle = $spListSettings.ListTitle
-        $listMajorVersions = $spListSettings.MajorVersions
+    #     $listTitle = $spListSettings.ListTitle
+    #     $listMajorVersions = $spListSettings.MajorVersions
     
-        Set-PnPList -Identity $listTitle -EnableVersioning $true -MajorVersions $listMajorVersions
+    #     Set-PnPList -Identity $listTitle -EnableVersioning $true -MajorVersions $listMajorVersions
     
-        Write-Host -ForegroundColor White "LIST SETTINGS: " -nonewline; 
-        Write-Host -ForegroundColor Green $listTitle -nonewline; 
-        Write-Host -ForegroundColor White " - UPDATED"
+    #     Write-Host -ForegroundColor White "LIST SETTINGS: " -nonewline; 
+    #     Write-Host -ForegroundColor Green $listTitle -nonewline; 
+    #     Write-Host -ForegroundColor White " - UPDATED"
     
-    }
+    # }
+
+    #===================================================================================
+    # Add Home Page
+    #===================================================================================
+
+    # foreach ($spNewHomePageItem in $spNewHomePage) {
+
+    #     $homePageName = $spNewHomePageItem.pageName
+    
+    #     Add-PnPClientSidePage -Name $homePageName
+
+    #     Set-PnPHomePage -RootFolderRelativeUrl SitePages/$homePageName.aspx
+    
+    #     Write-Host -ForegroundColor White "HOME PAGE: " -nonewline; 
+    #     Write-Host -ForegroundColor Green $homePageName -nonewline; 
+    #     Write-Host -ForegroundColor White " - ADDED"
+    
+    # }
 }

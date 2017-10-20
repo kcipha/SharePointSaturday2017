@@ -24,27 +24,35 @@ SharePoint 2013
 
 **FIRST - Connect to SharePoint Site**
 
-Connect-PnPOnline –Url https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/
+Connect-PnPOnline –Url https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday20172
 
 **Second - Create a list**
 
-New-PnPList -Title "First Demo List" -Url "DemoList" -Template Announcements
+New-PnPList -Title "First Demo List" -Url "FirstDemoList" -Template Announcements
 
-**Third - Set the List Properties**
+**Third - Add Navigation to Quick Launch**
+
+Add-PnPNavigationNode -Title "First Demo List" -Url "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday20172/FirstDemoList/" -Location "QuickLaunch"
+
+**Fourth - Set the List Properties**
 
 Set-PnPList -Identity "First Demo List" -EnableVersioning $true -MajorVersions 20
 
-**Fourth - Add list item**
+**Fifth - Add list item**
 
 Add-PnPListItem -List "First Demo List" -ContentType "Item" -Values @{"Title" = "Test Title 1"; "Body" = "Here is content for the body"}
 
-**Fifth - Add Navigation to Quick Launch**
+**Sixth - Add a View**
 
-Add-PnPNavigationNode -Title "First Demo List" -Url "https://kieferconsultinginc.sharepoint.com/sites/nicktest/sitetemplatetest/DemoList/" -Location "QuickLaunch"
+Add-PnPView -List "First Demo List" -Title "First Demo List Items" -Fields "Title","Body" -SetAsDefault
 
-**Last - Add a View**
+**Seventh - Add New Page**
 
-Add-PnPView -List "Demo List" -Title "First Demo List Items" -Fields "Title","Body"
+Add-PnPClientSidePage -Name "NewPage"
+
+**Last - Make New Page the homepage**
+
+Set-PnPHomePage -RootFolderRelativeUrl SitePages/NewPage.aspx
 
 **Other Section**
 
@@ -52,13 +60,3 @@ Add-PnPView -List "Demo List" -Title "First Demo List Items" -Fields "Title","Bo
 $MyCredential = Get-Credential
 
 .\addlist.ps1 -Credentials $MyCredential
-
-**Connect with credentials**
-
-Connect-PnPOnline –Url https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/ -Credentials $MyCredential
-
-Add-PnPField -List "Demo list" -DisplayName "Item Location" -InternalName "SPSLocation" -Type Choice -Group "Demo Group" -AddToDefaultView -Choices "Stockholm","Helsinki","Oslo"
-
-Remove-PnPView -List "Demo List" -Identity "Demo List Items"
-
-Add-PnPView -List "Demo List" -Title "Demo List Items" -Fields "Title","Body","Location"
