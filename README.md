@@ -24,7 +24,7 @@ SharePoint 2013
 
 **FIRST - Connect to SharePoint Site**
 
-Connect-PnPOnline –Url https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday20172
+Connect-PnPOnline –Url https://kieferconsultinginc.sharepoint.com/sites/SharePoint-Saturday-2017-Sample
 
 **Second - Create a list**
 
@@ -32,7 +32,7 @@ New-PnPList -Title "First Demo List" -Url "FirstDemoList" -Template Announcement
 
 **Third - Add Navigation to Quick Launch**
 
-Add-PnPNavigationNode -Title "First Demo List" -Url "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday20172/FirstDemoList/" -Location "QuickLaunch"
+Add-PnPNavigationNode -Title "First Demo List" -Url "https://kieferconsultinginc.sharepoint.com/sites/SharePoint-Saturday-2017-Sample/FirstDemoList/" -Location "QuickLaunch"
 
 **Fourth - Set the List Properties**
 
