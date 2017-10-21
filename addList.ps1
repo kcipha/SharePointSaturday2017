@@ -22,13 +22,13 @@ param(
 #===================================================================================
 $spUpdateSites = @(
     @{
-        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/"
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePoint-Saturday-2017/"
     }
     @{
-        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/SampleA"
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePoint-Saturday-2017/SampleA"
     }
     @{
-        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePointSaturday2017/SampleB"
+        site = "https://kieferconsultinginc.sharepoint.com/sites/SharePoint-Saturday-2017/SampleB"
     }
 )
 $spAddLists = @(
