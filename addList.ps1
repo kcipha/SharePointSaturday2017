@@ -130,9 +130,9 @@ foreach ($spSite in $spUpdateSites) {
     
     # }
         
-    #===================================================================================
+    # ===================================================================================
     # Add List View
-    #===================================================================================
+    # ===================================================================================
 
     # foreach ($spViewsAdd in $spAddViews) {
 
@@ -183,17 +183,17 @@ foreach ($spSite in $spUpdateSites) {
     # Add Home Page
     #===================================================================================
 
-    # foreach ($spNewHomePageItem in $spNewHomePage) {
+    foreach ($spNewHomePageItem in $spNewHomePage) {
 
-    #     $homePageName = $spNewHomePageItem.pageName
+        $homePageName = $spNewHomePageItem.pageName
     
-    #     Add-PnPClientSidePage -Name $homePageName
+        Add-PnPClientSidePage -Name $homePageName
 
-    #     Set-PnPHomePage -RootFolderRelativeUrl SitePages/$homePageName.aspx
+        Set-PnPHomePage -RootFolderRelativeUrl SitePages/$homePageName.aspx
     
-    #     Write-Host -ForegroundColor White "HOME PAGE: " -nonewline; 
-    #     Write-Host -ForegroundColor Green $homePageName -nonewline; 
-    #     Write-Host -ForegroundColor White " - ADDED"
+        Write-Host -ForegroundColor White "HOME PAGE: " -nonewline; 
+        Write-Host -ForegroundColor Green $homePageName -nonewline; 
+        Write-Host -ForegroundColor White " - ADDED"
     
-    # }
+    }
 }
