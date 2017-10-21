@@ -116,68 +116,68 @@ foreach ($spSite in $spUpdateSites) {
     # Add Lists
     #===================================================================================
 
-    # foreach ($spList in $spAddLists) {
+    foreach ($spList in $spAddLists) {
 
-    #     $listTitle = $spList.Title
-    #     $listUrl = $spList.Url
-    #     $listTemplate = $spList.Template
+        $listTitle = $spList.Title
+        $listUrl = $spList.Url
+        $listTemplate = $spList.Template
     
-    #     $newList = New-PnPList -Title "$listTitle" -Url "$listUrl" -Template $listTemplate -EnableVersioning -OnQuickLaunch
+        $newList = New-PnPList -Title "$listTitle" -Url "$listUrl" -Template $listTemplate -EnableVersioning -OnQuickLaunch
     
-    #     Write-Host -ForegroundColor White "LIST: " -nonewline; 
-    #     Write-Host -ForegroundColor Green $listTitle -nonewline; 
-    #     Write-Host -ForegroundColor White " - ADDED"
+        Write-Host -ForegroundColor White "LIST: " -nonewline; 
+        Write-Host -ForegroundColor Green $listTitle -nonewline; 
+        Write-Host -ForegroundColor White " - ADDED"
     
-    # }
+    }
         
     # ===================================================================================
     # Add List View
     # ===================================================================================
 
-    # foreach ($spViewsAdd in $spAddViews) {
+    foreach ($spViewsAdd in $spAddViews) {
 
-    #     $listTitle = $spViewsAdd.ListTitle
-    #     $viewTitle = $spViewsAdd.ViewTitle
-    #     $viewFields = $spViewsAdd.ViewFields -split (',')
-    #     $viewQuery = $spViewsAdd.ViewQuery
-    #     $viewDefaultView = $spViewsAdd.DefaultView
+        $listTitle = $spViewsAdd.ListTitle
+        $viewTitle = $spViewsAdd.ViewTitle
+        $viewFields = $spViewsAdd.ViewFields -split (',')
+        $viewQuery = $spViewsAdd.ViewQuery
+        $viewDefaultView = $spViewsAdd.DefaultView
 
-    #     Remove-PnPView -List "$listTitle" -Identity "$viewTitle" -Force
+        Remove-PnPView -List "$listTitle" -Identity "$viewTitle" -Force
 
-    #     If ( $viewDefaultView -eq 'yes') {
+        If ( $viewDefaultView -eq 'yes') {
 
-    #         Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery" -SetAsDefault
+            Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery" -SetAsDefault
 
-    #     }
-    #     else {
+        }
+        else {
                                 
-    #         Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery"
+            Add-PnPView -List $listTitle -Title "$viewTitle" -Fields $viewFields -Query "$viewQuery"
 
-    #     }
+        }
                             
-    #     Write-Host -ForegroundColor White "LIST: " -nonewline; 
-    #     Write-Host -ForegroundColor Green $listTitle -nonewline; 
-    #     Write-Host -ForegroundColor White " - VIEW ADDED: " -nonewline; 
-    #     Write-Host -ForegroundColor Green $viewTitle
+        Write-Host -ForegroundColor White "LIST: " -nonewline; 
+        Write-Host -ForegroundColor Green $listTitle -nonewline; 
+        Write-Host -ForegroundColor White " - VIEW ADDED: " -nonewline; 
+        Write-Host -ForegroundColor Green $viewTitle
 
-    # }
+    }
 
     #===================================================================================
     # Update Lists Settings
     #===================================================================================
 
-    # foreach ($spListSettings in $spListSettingsUpdate) {
+    foreach ($spListSettings in $spListSettingsUpdate) {
 
-    #     $listTitle = $spListSettings.ListTitle
-    #     $listMajorVersions = $spListSettings.MajorVersions
+        $listTitle = $spListSettings.ListTitle
+        $listMajorVersions = $spListSettings.MajorVersions
     
-    #     Set-PnPList -Identity $listTitle -EnableVersioning $true -MajorVersions $listMajorVersions
+        Set-PnPList -Identity $listTitle -EnableVersioning $true -MajorVersions $listMajorVersions
     
-    #     Write-Host -ForegroundColor White "LIST SETTINGS: " -nonewline; 
-    #     Write-Host -ForegroundColor Green $listTitle -nonewline; 
-    #     Write-Host -ForegroundColor White " - UPDATED"
+        Write-Host -ForegroundColor White "LIST SETTINGS: " -nonewline; 
+        Write-Host -ForegroundColor Green $listTitle -nonewline; 
+        Write-Host -ForegroundColor White " - UPDATED"
     
-    # }
+    }
 
     #===================================================================================
     # Add Home Page
