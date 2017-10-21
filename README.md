@@ -1,6 +1,10 @@
 # Share Point Staturday 2017
 ## SharePoint PnP PowerShell and what it can do for my SharePoint Environment
 
+**SharePoint PnP PowerShell**
+
+https://github.com/SharePoint/PnP-PowerShell
+
 **Check what is installed**
 
 Get-Command -Module *PnP*
